@@ -37,6 +37,14 @@
               <span class="inline-block w-1 h-1 mx-4 bg-teal-500 rounded-full" /> {{ detail }}
             </li>
           </ul>
+
+          <p class="mt-4 text-2xl font-semibold text-gray-700">
+            Made with care
+          </p>
+          <p class="text-gray-700">
+            Even that is just a demo and small project I care about performance and best practices.
+          </p>
+          <img class="mt-2 rounded-lg shadow" src="@/assets/img/performance.png" alt="I care about performance">
         </div>
       </div>
     </div>
