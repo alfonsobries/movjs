@@ -1,6 +1,6 @@
 <template>
   <div class="flex overflow-hidden bg-white rounded-lg shadow">
-    <div class="flex-shrink-0">
+    <div class="flex-shrink-0 bg-gray-500 shadow-inner">
       <img :src="movie.Poster" class="w-40" :alt="movie.title">
     </div>
     <div class="flex flex-col w-full">
@@ -18,7 +18,8 @@
           </p>
         </template>
       </div>
-      <div v-if="movieDetails" class="p-4 bg-gray-200">
+      <movie-details-placeholder v-if="!movieDetails" />
+      <div v-else class="p-4 bg-gray-200">
         <p class="hidden max-w-xs mb-3 text-sm text-gray-600 truncate sm:block">
           {{ movieDetails.Actors }}
         </p>
@@ -47,9 +48,11 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { MovieDetails } from '@/types/index'
 import MovieRating from './MovieRating'
+import MovieDetailsPlaceholder from './MovieDetailsPlaceholder'
 export default Vue.extend({
   components: {
-    MovieRating
+    MovieRating,
+    MovieDetailsPlaceholder
   },
   props: {
     movie: {

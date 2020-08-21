@@ -1,11 +1,13 @@
 <template>
   <div
     :class="{
-      'fixed top-0 right-0 w-screen h-screen overflow-scroll bg-opacity-75 bg-teal-900 m-0 sm:p-20 p-5': hasQuery,
+      'fixed top-0 right-0 w-screen h-screen overflow-scroll bg-opacity-75 bg-teal-900 m-0 sm:p-20 sm:pt-10 p-5 flex flex-col items-center': hasQuery,
       'relative w-full my-5': !hasQuery
     }"
   >
-    <form class="max-w-2xl mx-auto">
+    <logo v-if="hasQuery" />
+
+    <form class="w-full max-w-2xl mx-auto mt-10">
       <div class="relative">
         <div class="absolute inset-y-0 left-0 block px-6 pointer-events-none">
           <div class="flex flex-row items-center h-full pl-2">
@@ -34,6 +36,11 @@
             </label>
           </div>
         </div>
+        <div v-if="hasQuery" class="absolute inset-y-0 right-0 flex items-center justify-center pr-5">
+          <a class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-opacity-50 hover:bg-red-500" href="#" @click.prevent="query = ''">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-red-500"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+          </a>
+        </div>
       </div>
     </form>
 
@@ -49,9 +56,11 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { ApiResult, MovieCollection } from '@/types/index'
 import MovieResults from '@/components/MovieResults'
+import Logo from '@/components/Logo'
 export default Vue.extend({
   components: {
-    MovieResults
+    MovieResults,
+    Logo
   },
   data () {
     const results: MovieCollection = []
