@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import HeadPattern from '@/components/HeadPattern'
-import Legals from '@/components/Legals'
+import HeadPattern from '@/components/HeadPattern.vue'
+import Legals from '@/components/Legals.vue'
 
 export default Vue.extend({
   components: {

@@ -65,8 +65,8 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { MovieDetails, Movie } from '@/types/index'
-import MovieRating from './MovieRating'
-import MovieDetailsPlaceholder from './MovieDetailsPlaceholder'
+import MovieRating from './MovieRating.vue'
+import MovieDetailsPlaceholder from './MovieDetailsPlaceholder.vue'
 export default Vue.extend({
   components: {
     MovieRating,

@@ -14,9 +14,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import HeadPattern from '@/components/HeadPattern'
-import MainMenu from '@/components/MainMenu'
-import Legals from '@/components/Legals'
+import HeadPattern from '@/components/HeadPattern.vue'
+import MainMenu from '@/components/MainMenu.vue'
+import Legals from '@/components/Legals.vue'
 export default Vue.extend({
   components: {
     HeadPattern,

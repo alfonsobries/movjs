@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MovieCard from './MovieCard'
+import MovieCard from './MovieCard.vue'
 
 export default Vue.extend({
   components: {

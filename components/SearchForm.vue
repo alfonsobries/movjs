@@ -80,10 +80,10 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { ApiResult, MovieCollection } from '@/types/index'
-import MovieResults from '@/components/MovieResults'
-import MovieResultsFeedback from '@/components/MovieResultsFeedback'
-import LoadingIcon from '@/components/LoadingIcon'
-import Logo from '@/components/Logo'
+import MovieResults from '@/components/MovieResults.vue'
+import MovieResultsFeedback from '@/components/MovieResultsFeedback.vue'
+import LoadingIcon from '@/components/LoadingIcon.vue'
+import Logo from '@/components/Logo.vue'
 
 export default Vue.extend({
   components: {

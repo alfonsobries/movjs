@@ -24,9 +24,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Logo from '@/components/Logo'
-import AsTrusted from '@/components/AsTrusted'
-import SearchForm from '@/components/SearchForm'
+import Logo from '@/components/Logo.vue'
+import AsTrusted from '@/components/AsTrusted.vue'
+import SearchForm from '@/components/SearchForm.vue'
 
 export default Vue.extend({
   layout: 'home',
