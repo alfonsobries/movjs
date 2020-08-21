@@ -52,13 +52,14 @@ export default Vue.extend({
       techs: [
         'NuxtJS for the page navigation',
         'VueJS for the components',
+        'TailwindCSS for styling',
         'TypeScript on top of the JS Code',
-        'Hosted on Netlify'
+        'Hosted as an SSR app on Vercel'
       ],
       devtools: [
         'Git for source control',
         'Visual Studio Code IDE',
-        'Macbook PRO'
+        'Macbook Pro'
       ]
     }
   },
