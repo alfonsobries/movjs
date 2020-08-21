@@ -33,6 +33,11 @@ export default Vue.extend({
     SearchForm,
     AsTrusted,
     Logo
+  },
+  head () {
+    return {
+      title: 'Your movie search engine - MovJS'
+    }
   }
 })
 </script>

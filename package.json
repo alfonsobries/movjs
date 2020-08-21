@@ -1,5 +1,6 @@
 {
-  "name": "movjs",
+  "name": "Movjs",
+  "description": "MovJs is a VueJs powered movie and entertainment search engine for people in a hurry.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
