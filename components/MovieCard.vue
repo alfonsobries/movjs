@@ -98,7 +98,7 @@ export default Vue.extend({
 
       this.loadingDetails = true
       this.axiosCancel = this.$axios.CancelToken.source()
-      const url = `http://www.omdbapi.com/?apikey=${this.omdbToken}&i=${this.movie.imdbID}&page=1`
+      const url = `https://www.omdbapi.com/?apikey=${this.omdbToken}&i=${this.movie.imdbID}&page=1`
       this.$axios.$get(url)
         .then((response: MovieDetails) => {
           this.movieDetails = response

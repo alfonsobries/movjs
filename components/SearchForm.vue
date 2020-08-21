@@ -147,7 +147,7 @@ export default Vue.extend({
 
       this.axiosCancel = this.$axios.CancelToken.source()
 
-      const url = `http://www.omdbapi.com/?apikey=${this.omdbToken}&s=${query}&page=1`
+      const url = `https://www.omdbapi.com/?apikey=${this.omdbToken}&s=${query}&page=1`
       this.$axios.$get(url, {
         cancelToken: this.axiosCancel.token
       })
