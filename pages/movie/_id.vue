@@ -71,7 +71,6 @@ import Vue from 'vue'
 import { MovieDetails } from '@/types/index'
 
 export default Vue.extend({
-  layout: 'content',
   async asyncData ({ route, error, store, $axios }) {
     const omdbToken = store.getters.omdbToken
     const movieId = route.params.id

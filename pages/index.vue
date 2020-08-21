@@ -29,6 +29,7 @@ import AsTrusted from '@/components/AsTrusted'
 import SearchForm from '@/components/SearchForm'
 
 export default Vue.extend({
+  layout: 'home',
   components: {
     SearchForm,
     AsTrusted,
