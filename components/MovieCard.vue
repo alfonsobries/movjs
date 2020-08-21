@@ -29,8 +29,8 @@
         <span class="text-gray-600">{{ errorMessage }}</span>
       </div>
       <div v-else class="p-4 bg-gray-200">
-        <p class="hidden max-w-xs mb-3 text-sm text-gray-600 truncate sm:block">
-          {{ movieDetails.Actors }}
+        <p class="mb-3 text-sm text-gray-600">
+          <strong>Director:</strong> {{ movieDetails.Director }}
         </p>
         <div class="flex flex-col justify-between sm:flex-row">
           <div>
