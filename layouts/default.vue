@@ -7,6 +7,8 @@
     <main class="relative px-2 py-10 mx-auto max-w-7xl sm:px-4 lg:px-8">
       <nuxt />
     </main>
+
+    <legals />
   </div>
 </template>
 
@@ -14,10 +16,11 @@
 import Vue from 'vue'
 import HeadPattern from '@/components/HeadPattern'
 import MainMenu from '@/components/MainMenu'
-
+import Legals from '@/components/Legals'
 export default Vue.extend({
   components: {
-    HeadPattern
+    HeadPattern,
+    Legals
   }
 })
 </script>

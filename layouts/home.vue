@@ -6,6 +6,8 @@
       <main class="mt-8 sm:mt-16 md:mt-20 lg:mt-24">
         <nuxt />
       </main>
+
+      <legals />
     </div>
   </div>
 </template>
@@ -13,10 +15,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import HeadPattern from '@/components/HeadPattern'
+import Legals from '@/components/Legals'
 
 export default Vue.extend({
   components: {
-    HeadPattern
+    HeadPattern,
+    Legals
   }
 })
 </script>
