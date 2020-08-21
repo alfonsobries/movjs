@@ -1,12 +1,12 @@
 <template>
   <div class="relative px-2 py-10 mx-auto max-w-7xl sm:px-4 lg:px-8">
     <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow sm:flex-row">
-      <div class="flex-shrink-0 max-w-sm bg-gray-500 shadow-inner">
+      <div class="flex-shrink-0 hidden max-w-sm bg-gray-500 shadow-inner sm:block">
         <img :src="movie.Poster" class="w-full" :alt="movie.title">
       </div>
       <div class="flex flex-col w-full">
         <div class="flex-grow p-4 bg-white">
-          <h1 class="flex justify-between text-4xl font-semibold text-gray-800">
+          <h1 class="flex flex-col justify-between text-4xl font-semibold text-gray-800 sm:flex-row">
             <span>
               {{ movie.Title }}
             </span>
@@ -16,11 +16,15 @@
               :votes="movie.imdbVotes"
             />
           </h1>
-          <p class="text-gray-700 ">
+          <p class="mt-4 text-gray-700 sm:mt-0">
             {{ movie.Plot }}
           </p>
 
-          <ul class="flex my-4 text-sm text-gray-500 capitalize">
+          <div class="flex-shrink-0 max-w-sm mt-4 bg-gray-500 shadow-inner sm:hidden">
+            <img :src="movie.Poster" class="w-full" :alt="movie.title">
+          </div>
+
+          <ul class="flex flex-wrap my-4 text-sm text-gray-500 capitalize">
             <li class="pr-2">
               {{ movie.Rated }}
             </li>
