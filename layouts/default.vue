@@ -4,7 +4,7 @@
 
     <main-menu />
 
-    <main>
+    <main class="relative px-2 py-10 mx-auto max-w-7xl sm:px-4 lg:px-8">
       <nuxt />
     </main>
   </div>
