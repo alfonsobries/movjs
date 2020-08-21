@@ -29,7 +29,7 @@ export default {
   },
 
   env: {
-    omdbToken: process.env.OMDB_TOKEN || 'https://vue-tailwind-themes-api.test'
+    omdbToken: process.env.OMDB_TOKEN || 'e1b3617e'
   },
 
   /*
