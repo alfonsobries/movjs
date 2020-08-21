@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{
-      'fixed top-0 right-0 w-screen h-screen overflow-scroll bg-opacity-75 bg-teal-900 m-0 sm:p-20 sm:pt-10 p-5 flex flex-col items-center': hasQuery,
+      'fixed top-0 right-0 w-screen h-screen overflow-scroll bg-opacity-75 bg-teal-900 m-0 sm:p-20 sm:pt-10 p-5 flex flex-col items-center z-50': hasQuery,
       'relative w-full my-5': !hasQuery
     }"
   >

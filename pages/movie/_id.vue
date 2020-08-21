@@ -1,7 +1,63 @@
 <template>
-  <div>
-    <div class="max-w-screen-md mx-auto">
-      <p>lorem</p>
+  <div class="relative px-2 py-10 mx-auto max-w-7xl sm:px-4 lg:px-8">
+    <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow sm:flex-row">
+      <div class="flex-shrink-0 max-w-sm bg-gray-500 shadow-inner">
+        <img :src="movie.Poster" class="w-full" :alt="movie.title">
+      </div>
+      <div class="flex flex-col w-full">
+        <div class="flex-grow p-4 bg-white">
+          <h1 class="flex justify-between text-4xl font-semibold text-gray-800">
+            <span>
+              {{ movie.Title }}
+            </span>
+            <movie-rating
+              big
+              :rating="parseFloat(movie.imdbRating)"
+              :votes="movie.imdbVotes"
+            />
+          </h1>
+          <p class="text-gray-700 ">
+            {{ movie.Plot }}
+          </p>
+
+          <ul class="flex my-4 text-sm text-gray-500 capitalize">
+            <li class="pr-2">
+              {{ movie.Rated }}
+            </li>
+            <li class="px-2 border-l">
+              {{ movie.Year }}
+            </li>
+            <li class="px-2 border-l">
+              {{ movie.Type }} - {{ movie.Genre }}
+            </li>
+            <li class="px-2 border-l">
+              {{ movie.Runtime }}
+            </li>
+          </ul>
+
+          <p>
+            <strong class="text-gray-700">Actors:</strong> <span class="text-gray-600">{{ movie.Actors }}</span>
+          </p>
+          <p>
+            <strong class="text-gray-700">Director:</strong> <span class="text-gray-600">{{ movie.Director }}</span>
+          </p>
+          <p>
+            <strong class="text-gray-700">Writer:</strong> <span class="text-gray-600">{{ movie.Writer }}</span>
+          </p>
+        </div>
+
+        <div class="p-4 bg-gray-200">
+          <ul>
+            <li
+              v-for="(detail, index) in details"
+              :key="index"
+              class="flex items-center text-sm text-gray-700"
+            >
+              <span class="inline-block w-1 h-1 mx-4 bg-teal-500 rounded-full" /> {{ detail }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +83,29 @@ export default Vue.extend({
       } else {
         error(new Error('Unexpected error occured'))
       }
+    }
+  },
+  computed: {
+    details (): string[] {
+      const movie = (this as unknown as { movie: MovieDetails }).movie
+      type movieParam = keyof MovieDetails
+      const loopableParams: movieParam[] = [
+        'Awards',
+        'BoxOffice',
+        'Country',
+        'DVD',
+        'Metascore',
+        'Production',
+        'Released',
+        'Language',
+        'Website'
+      ]
+
+      return loopableParams
+        .filter(param => !!movie[param])
+        .map((param) => {
+          return `${param}: ${movie[param]}`
+        }) as string[]
     }
   },
   head () {
