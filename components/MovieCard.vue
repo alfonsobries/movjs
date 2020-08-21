@@ -1,7 +1,7 @@
 <template>
-  <div class="flex overflow-hidden bg-white rounded-lg shadow">
+  <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow sm:flex-row">
     <div class="flex-shrink-0 bg-gray-500 shadow-inner">
-      <img :src="movie.Poster" class="w-40" :alt="movie.title">
+      <img :src="movie.Poster" class="w-full sm:w-40" :alt="movie.title">
     </div>
     <div class="flex flex-col w-full">
       <div class="flex-grow p-4">
@@ -23,7 +23,7 @@
         <p class="hidden max-w-xs mb-3 text-sm text-gray-600 truncate sm:block">
           {{ movieDetails.Actors }}
         </p>
-        <div class="flex justify-between">
+        <div class="flex flex-col justify-between sm:flex-row">
           <div>
             <strong>{{ movieDetails.Year }}</strong>
             <movie-rating
@@ -32,7 +32,7 @@
             />
           </div>
 
-          <span class="inline-flex rounded-md shadow-sm">
+          <span class="inline-flex mt-4 rounded-md shadow-sm sm:mt-0">
             <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-teal-600 border border-transparent rounded-md hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700">
               View more
             </button>
