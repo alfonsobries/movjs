@@ -29,9 +29,6 @@
       "@nuxtjs/axios"
     ]
   },
-  "include": [
-    "decs.d.ts"
-  ],
   "exclude": [
     "node_modules",
     ".nuxt",
