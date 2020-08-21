@@ -7,9 +7,16 @@
   >
     <logo v-if="hasQuery" />
 
-    <form class="w-full max-w-2xl mx-auto mt-10">
+    <form
+      class="w-full"
+      :class="{
+        'mt-10 max-w-2xl mx-auto': !useAlt,
+        'border-transparent': !hasQuery,
+        'border-teal-700': hasQuery
+      }"
+    >
       <div class="relative">
-        <div class="absolute inset-y-0 left-0 block px-6 pointer-events-none">
+        <div class="absolute inset-y-0 left-0 block px-3 pointer-events-none sm:px-6">
           <div class="flex flex-row items-center h-full pl-2">
             <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 text-gray-400 transition duration-200 ease-in-out search"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
           </div>
@@ -20,13 +27,15 @@
               <input
                 ref="input"
                 v-model="query"
-                class="block w-full py-5 pl-20 pr-10 text-xl text-gray-100 placeholder-gray-400 transition-all duration-200 ease-in-out bg-gray-700 border-4 rounded-lg shadow-none appearance-none focus:outline-none focus:shadow-solid-indigo focus:bg-gray-100 focus:text-gray-800 focus:placeholder-gray-500 "
+                class="block w-full pl-12 pr-6 text-gray-100 placeholder-gray-400 transition-all duration-200 ease-in-out bg-gray-700 border-4 rounded-lg shadow-none appearance-none sm:pr-10 sm:pl-20 w-fulltext-xl focus:outline-none focus:shadow-solid-indigo focus:bg-gray-100 focus:text-gray-800 focus:placeholder-gray-500"
                 :class="{
+                  'py-5 ': !useAlt,
+                  'py-3': useAlt,
                   'border-transparent': !hasQuery,
                   'border-teal-700': hasQuery
                 }"
                 type="text"
-                placeholder="Search a movie by title (&quot;/&quot; to focus)"
+                placeholder="Search a movie by title"
                 aria-label="Search a movie by title"
                 autocapitalize="off"
                 autocomplete="off"
@@ -75,12 +84,19 @@ import MovieResults from '@/components/MovieResults'
 import MovieResultsFeedback from '@/components/MovieResultsFeedback'
 import LoadingIcon from '@/components/LoadingIcon'
 import Logo from '@/components/Logo'
+
 export default Vue.extend({
   components: {
     MovieResults,
     MovieResultsFeedback,
     LoadingIcon,
     Logo
+  },
+  props: {
+    alt: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     const results: MovieCollection = []
@@ -97,6 +113,9 @@ export default Vue.extend({
     }
   },
   computed: {
+    useAlt (): boolean {
+      return this.alt && !this.hasQuery
+    },
     loadingResults () : boolean {
       return !!(this.busy && this.query && !this.results.length)
     },
@@ -111,6 +130,9 @@ export default Vue.extend({
     })
   },
   watch: {
+    '$route' () {
+      this.query = ''
+    },
     query (query) {
       this.busy = true
 

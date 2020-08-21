@@ -1,12 +1,17 @@
 <template>
   <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow sm:flex-row">
-    <div class="flex-shrink-0 bg-gray-500 shadow-inner">
+    <nuxt-link :disabled="isInMoviePage" :to="`/movie/${movie.imdbID}`" class="flex-shrink-0 bg-gray-500 shadow-inner">
       <img :src="movie.Poster" class="w-full sm:w-40" :alt="movie.title">
-    </div>
+    </nuxt-link>
     <div class="flex flex-col w-full">
       <div class="flex-grow p-4">
         <h3 class="text-lg font-semibold text-gray-800">
-          {{ movie.Title }}
+          <nuxt-link v-if="!isInMoviePage" :to="`/movie/${movie.imdbID}`" class="hover:text-gray-700">
+            {{ movie.Title }}
+          </nuxt-link>
+          <span v-else>
+            {{ movie.Title }}
+          </span>
         </h3>
         <template v-if="movieDetails">
           <p v-if="!expandPlot" class="text-sm leading-snug text-gray-700">
@@ -37,9 +42,18 @@
           </div>
 
           <span class="inline-flex mt-4 rounded-md shadow-sm sm:mt-0">
-            <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-teal-600 border border-transparent rounded-md hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700">
+            <nuxt-link
+              :to="`/movie/${movie.imdbID}`"
+              type="button"
+              :class="{
+                'hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700': !isInMoviePage,
+                'opacity-50 cursor-not-allowed': isInMoviePage,
+              }"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-teal-600 border border-transparent rounded-md "
+              :disabled="isInMoviePage"
+            >
               View more
-            </button>
+            </nuxt-link>
           </span>
         </div>
       </div>
@@ -50,7 +64,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import { MovieDetails } from '@/types/index'
+import { MovieDetails, Movie } from '@/types/index'
 import MovieRating from './MovieRating'
 import MovieDetailsPlaceholder from './MovieDetailsPlaceholder'
 export default Vue.extend({
@@ -77,6 +91,10 @@ export default Vue.extend({
     ...mapGetters({
       omdbToken: 'omdbToken'
     }),
+    isInMoviePage (): boolean {
+      const movie: Movie = (this as unknown as { movie: Movie }).movie
+      return !!(this.$route.params.id && this.$route.params.id === movie.imdbID)
+    },
     plotHasMore (): boolean {
       return (!!this.movieDetails) && this.movieDetails.Plot.length > this.plotExcerpt.length
     },
