@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-screen-md mx-auto">
-    <div class="px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
+    <div class="px-4 sm:px-6 md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
       <div>
         <div class="flex justify-center">
           <logo class="mx-auto " />

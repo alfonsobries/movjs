@@ -1,4 +1,6 @@
 
+require('dotenv').config()
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -25,11 +27,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Global CSS
-  */
-  css: [
-  ],
+
+  env: {
+    omdbToken: process.env.OMDB_TOKEN || 'https://vue-tailwind-themes-api.test'
+  },
+
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
