@@ -19,6 +19,10 @@
         </template>
       </div>
       <movie-details-placeholder v-if="!movieDetails" />
+      <div v-else-if="errorMessage" class="p-4 bg-gray-200">
+        <svg viewBox="0 0 20 20" fill="currentColor" class="w-10 h-10 text-gray-400 puzzle"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z" /></svg>
+        <span class="text-gray-600">{{ errorMessage }}</span>
+      </div>
       <div v-else class="p-4 bg-gray-200">
         <p class="hidden max-w-xs mb-3 text-sm text-gray-600 truncate sm:block">
           {{ movieDetails.Actors }}
@@ -65,7 +69,8 @@ export default Vue.extend({
       axiosCancel: this.$axios.CancelToken.source(),
       loadingDetails: false,
       movieDetails: null as MovieDetails | null,
-      expandPlot: false
+      expandPlot: false,
+      errorMessage: ''
     }
   },
   computed: {
@@ -111,7 +116,11 @@ export default Vue.extend({
           }
 
           this.loadingDetails = false
-          alert('Unexpected error occured')
+          if (error.message) {
+            this.errorMessage = error.message
+          } else {
+            alert('Unexpected error occured')
+          }
         })
     }
   }
