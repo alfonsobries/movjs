@@ -19,6 +19,7 @@ import MainMenu from '@/components/MainMenu.vue'
 import Legals from '@/components/Legals.vue'
 export default Vue.extend({
   components: {
+    MainMenu,
     HeadPattern,
     Legals
   }

@@ -68,8 +68,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MovieDetails } from '@/types/index'
-
+import MovieRating from '@/components/MovieRating.vue'
 export default Vue.extend({
+  components: {
+    MovieRating
+  },
   async asyncData ({ route, error, store, $axios }) {
     const omdbToken = store.getters.omdbToken
     const movieId = route.params.id
