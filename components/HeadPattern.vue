@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden sm:block sm:absolute sm:inset-0">
+  <div class="hidden pointer-events-none sm:block sm:absolute sm:inset-0">
     <div class="absolute bottom-0 right-0 mb-48 text-gray-700 transform translate-x-1/2 lg:top-0 lg:mt-28 lg:mb-0 xl:transform-none xl:translate-x-0 pattern" />
   </div>
 </template>
