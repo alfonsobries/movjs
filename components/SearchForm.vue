@@ -42,10 +42,26 @@
           </a>
         </div>
       </div>
+
+      <movie-results-feedback v-if="loadingResults && !results.length">
+        <span class="flex">
+          <loading-icon class="w-5 h-5 mr-2" />
+          Loading results...
+        </span>
+      </movie-results-feedback>
+      <movie-results-feedback v-else-if="errorMessage">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mb-4 text-teal-200"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        Oops! {{ errorMessage }}
+      </movie-results-feedback>
+      <movie-results-feedback v-else-if="noResults">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16 mb-4 text-teal-200"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        Unfortunately we could not find any results for your search "{{ query }}". Try a different query
+      </movie-results-feedback>
     </form>
 
     <movie-results
-      v-if="totalMatchs"
+      v-if="results.length"
+      :loading="loadingResults"
       :movies="results"
     />
   </div>
@@ -56,10 +72,14 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { ApiResult, MovieCollection } from '@/types/index'
 import MovieResults from '@/components/MovieResults'
+import MovieResultsFeedback from '@/components/MovieResultsFeedback'
+import LoadingIcon from '@/components/LoadingIcon'
 import Logo from '@/components/Logo'
 export default Vue.extend({
   components: {
     MovieResults,
+    MovieResultsFeedback,
+    LoadingIcon,
     Logo
   },
   data () {
@@ -72,10 +92,17 @@ export default Vue.extend({
       hasError: false,
       errorMessage: '',
       results,
-      totalMatchs: 0
+      totalMatchs: 0,
+      busy: false
     }
   },
   computed: {
+    loadingResults () : boolean {
+      return !!(this.busy && this.query && !this.results.length)
+    },
+    noResults () : boolean {
+      return !!(this.query && !this.busy && !this.results.length)
+    },
     hasQuery (): boolean {
       return !!this.query
     },
@@ -85,7 +112,11 @@ export default Vue.extend({
   },
   watch: {
     query (query) {
+      this.busy = true
+
       this.hasError = false
+      this.errorMessage = ''
+
       if (this.searchTimeout) {
         clearTimeout(this.searchTimeout)
       }
@@ -99,7 +130,7 @@ export default Vue.extend({
       this.searchTimeout = window.setTimeout(() => {
         this.doSearch(query)
         this.searchTimeout = -1
-      }, 100)
+      }, 300)
     }
   },
   mounted () {
@@ -122,8 +153,12 @@ export default Vue.extend({
       })
         .then((response: ApiResult) => {
           if (response.Response === 'False') {
+            this.results = []
+            this.totalMatchs = 0
             throw new Error(response.Error)
           }
+
+          this.busy = false
 
           if (response.Search) {
             this.results = response.Search as MovieCollection
@@ -138,6 +173,7 @@ export default Vue.extend({
             return
           }
 
+          this.busy = false
           this.hasError = true
           if (error.message) {
             this.errorMessage = error.message
