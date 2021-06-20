@@ -6,10 +6,6 @@
           <h1 class="justify-between text-4xl font-semibold text-gray-800">
             About this page
           </h1>
-
-          <p class="mt-4 text-gray-700 sm:mt-0">
-            Hi, my name is <strong>Alfonso Bribiesca</strong>, and I create this page as a tech exercise to apply to a job in <strong>LoveToKnow Media</strong>. I hope you enjoy it using it as much as I enjoy working on this.
-          </p>
         </div>
 
         <div class="p-4 bg-gray-200">
