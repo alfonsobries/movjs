@@ -15,8 +15,6 @@
         </p>
 
         <search-form />
-
-        <as-trusted />
       </div>
     </div>
   </div>
@@ -25,14 +23,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Logo from '@/components/Logo.vue'
-import AsTrusted from '@/components/AsTrusted.vue'
 import SearchForm from '@/components/SearchForm.vue'
 
 export default Vue.extend({
   layout: 'home',
   components: {
     SearchForm,
-    AsTrusted,
     Logo
   },
   head () {
